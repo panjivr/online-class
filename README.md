@@ -20,6 +20,7 @@ Buka http://localhost:3000. Jalankan pemeriksaan dengan `npm run typecheck` dan 
 - Salinan yang menyatakan kelas masih dipersiapkan dan tidak menjanjikan pekerjaan.
 - Daftar modul dan FAQ terpusat di `lib/course.ts`.
 - Token desain di `app/globals.css` sebagai dasar penyelarasan Figma.
+- Rancangan skema PostgreSQL/Prisma di `prisma/schema.prisma`; belum terhubung ke database.
 - Metadata yang tidak meminta pengindeksan selama pratinjau.
 
 ## Belum aktif
@@ -32,7 +33,7 @@ Materi referensi pihak ketiga memiliki pembatasan penggunaan pribadi dan tidak u
 
 ## Figma
 
-Komponen dan token perlu dipetakan ke file Figma Design yang dapat diedit setelah file dibuat. Lihat `docs/figma-handoff.md`. Mengubah Figma tidak secara otomatis mengubah kode produksi.
+Rancangan awal Figma Design: https://www.figma.com/design/j5jDIY3XYjz3r5Q8PBFYBB. Lihat `docs/figma-handoff.md`. Mengubah Figma tidak secara otomatis mengubah kode produksi.
 
 ## Berikutnya
 

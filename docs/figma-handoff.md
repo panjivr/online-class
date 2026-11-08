@@ -1,6 +1,6 @@
 # Figma dan implementasi
 
-Belum ada file Figma yang tersambung. File Figma harus menjadi sumber spesifikasi visual yang editable, bukan gambar datar.
+Rancangan awal yang dapat diedit: https://www.figma.com/design/j5jDIY3XYjz3r5Q8PBFYBB. File berisi draft landing desktop dan hero mobile; halaman lainnya dan sinkronisasi otomatis belum dibuat. File Figma menjadi sumber spesifikasi visual, bukan gambar datar.
 
 ## Struktur yang disiapkan
 

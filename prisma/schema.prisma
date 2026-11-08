@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  STUDENT
+  ADMIN
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum OrderStatus {
+  CREATED
+  PENDING
+  PAID
+  EXPIRED
+  FAILED
+  CANCELLED
+  REFUNDED
+  DISPUTED
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  EXPIRED
+  REVOKED
+}
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  displayName     String?
+  emailVerifiedAt DateTime?
+  role            UserRole         @default(STUDENT)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  orders          Order[]
+  enrollments     Enrollment[]
+  progress        LessonProgress[]
+  auditLogs       AuditLog[]
+}
+
+model Course {
+  id                 String            @id @default(cuid())
+  slug               String            @unique
+  title              String
+  description        String            @db.Text
+  status             PublicationStatus @default(DRAFT)
+  priceIdr           Int
+  accessDurationDays Int
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  modules            CourseModule[]
+  orderItems         OrderItem[]
+  enrollments        Enrollment[]
+}
+
+model CourseModule {
+  id        String   @id @default(cuid())
+  courseId  String
+  title     String
+  sortOrder Int
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons   Lesson[]
+
+  @@unique([courseId, sortOrder])
+}
+
+model Lesson {
+  id          String            @id @default(cuid())
+  moduleId    String
+  slug        String
+  title       String
+  sortOrder   Int
+  status      PublicationStatus @default(DRAFT)
+  isPreview   Boolean           @default(false)
+  videoId     String?
+  durationSec Int?
+  transcript  String?           @db.Text
+  module      CourseModule      @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  resources   Resource[]
+  progress    LessonProgress[]
+
+  @@unique([moduleId, slug])
+  @@unique([moduleId, sortOrder])
+}
+
+model Resource {
+  id         String @id @default(cuid())
+  lessonId   String
+  storageKey String
+  filename   String
+  mimeType   String
+  lesson     Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id             String        @id @default(cuid())
+  userId         String
+  status         OrderStatus   @default(CREATED)
+  amountIdr      Int
+  currency       String        @default("IDR")
+  idempotencyKey String        @unique
+  expiresAt      DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  user           User          @relation(fields: [userId], references: [id])
+  items          OrderItem[]
+  payments       Payment[]
+  enrollments    Enrollment[]
+
+  @@index([userId, createdAt])
+}
+
+model OrderItem {
+  id                 String @id @default(cuid())
+  orderId            String
+  courseId           String
+  titleSnapshot      String
+  amountIdr          Int
+  accessDaysSnapshot Int
+  order              Order  @relation(fields: [orderId], references: [id])
+  course             Course @relation(fields: [courseId], references: [id])
+
+  @@unique([orderId, courseId])
+}
+
+model Payment {
+  id                String         @id @default(cuid())
+  orderId           String
+  provider          String
+  providerReference String         @unique
+  status            String
+  amountIdr         Int
+  paidAt            DateTime?
+  createdAt         DateTime       @default(now())
+  order             Order          @relation(fields: [orderId], references: [id])
+  events            PaymentEvent[]
+}
+
+model PaymentEvent {
+  id              String   @id @default(cuid())
+  paymentId       String?
+  provider        String
+  providerEventId String
+  receivedAt      DateTime @default(now())
+  verified        Boolean  @default(false)
+  payment         Payment? @relation(fields: [paymentId], references: [id])
+
+  @@unique([provider, providerEventId])
+}
+
+model Enrollment {
+  id            String           @id @default(cuid())
+  userId        String
+  courseId      String
+  sourceOrderId String
+  status        EnrollmentStatus @default(ACTIVE)
+  startsAt      DateTime
+  expiresAt     DateTime
+  user          User             @relation(fields: [userId], references: [id])
+  course        Course           @relation(fields: [courseId], references: [id])
+  sourceOrder   Order            @relation(fields: [sourceOrderId], references: [id])
+
+  @@unique([userId, courseId, sourceOrderId])
+  @@index([userId, courseId, status, expiresAt])
+}
+
+model LessonProgress {
+  userId          String
+  lessonId        String
+  lastPositionSec Int      @default(0)
+  completedAt     DateTime?
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson          Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@id([userId, lessonId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String
+  targetType String
+  targetId   String
+  reason     String?
+  createdAt  DateTime @default(now())
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([targetType, targetId, createdAt])
+}

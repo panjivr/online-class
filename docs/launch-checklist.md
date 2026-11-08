@@ -12,5 +12,5 @@ Status: belum siap berjualan.
 - [ ] Sediakan dukungan, kebijakan privasi, syarat, hak pengguna dan peninjauan kepatuhan.
 - [ ] Jalankan uji end-to-end di sandbox, mobile, aksesibilitas, keamanan dan operasi.
 - [ ] Lakukan pilot dan verifikasi seluruh alur sebelum promosi dan transaksi produksi.
-- [ ] Buat Figma Design editable dan pemetaan kode.
+- [ ] Lengkapi Figma Design editable seluruh halaman dan pemetaan komponen kode; draft landing awal sudah ada.
 - [ ] Setelah konten dan legal siap, siapkan URL canonical, sitemap, Search Console dan ubah arahan noindex.

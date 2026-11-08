@@ -11,8 +11,10 @@ jobs:
         with:
           node-version: 22
       - run: npm install --no-audit --no-fund
+      - run: npx prisma generate
       - run: npm run typecheck
       - run: npm run db:validate
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/test
+      - run: npm test
       - run: npm run build

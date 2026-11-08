@@ -7,6 +7,7 @@ const links = [
   { href: "#belajar", label: "Alur belajar" },
   { href: "#kurikulum", label: "Kurikulum" },
   { href: "#faq", label: "FAQ" },
+  { href: "/masuk", label: "Masuk ke akun" },
   { href: "#kelas", label: "Jelajahi kelas ↗" }
 ];
 

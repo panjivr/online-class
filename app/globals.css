@@ -93,3 +93,33 @@ main:focus{outline:none}
 .mentor-lime{background:var(--neon)}.mentor-lavender{background:var(--purple)}
 @media(max-width:1100px){.design-course{grid-template-columns:1fr}.design-course-art{min-height:260px}.design-course-art strong{font-size:52px}.design-course-body{min-height:360px}}
 @media(max-width:700px){.catalog-heading{display:block}.catalog-heading>p{margin-top:20px}.design-course-grid,.remote-lesson-box,.mentor-grid{grid-template-columns:1fr}.design-course-art{min-height:240px}.design-course-body{min-height:auto}.remote-lesson-box{gap:30px;padding:28px}.catalog-contact{margin-top:8px}.footer-social a{min-height:48px}.mentor-grid article{padding:20px;gap:18px}.mentor-monogram{flex-basis:88px;width:88px;height:88px}}
+
+/* Account, checkout and learning */
+.account-page,.store-page{min-height:100vh;background:var(--paper);padding:0 clamp(20px,5vw,72px) 80px}
+.account-header,.store-header{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);font-size:14px;font-weight:700}
+.account-header>a,.store-header>a,.quiet-button{min-height:44px;display:inline-flex;align-items:center}
+.account-brand{font:700 20px var(--display);letter-spacing:-.07em}.account-brand:first-letter{color:#8eb300}.account-brand span{margin-left:8px}
+.account-layout{max-width:1180px;margin:65px auto 0;display:grid;grid-template-columns:1fr 1fr;min-height:610px;background:#fff}
+.account-aside{background:var(--neon);padding:40px;display:flex;flex-direction:column;justify-content:space-between}
+.account-aside>span,.account-eyebrow{font-size:11px;letter-spacing:.12em;font-weight:700}
+.account-aside strong{font:700 clamp(54px,6vw,78px)/.95 var(--display);letter-spacing:-.08em}.account-aside strong span{font-size:.4em;vertical-align:top;margin-left:8px}
+.account-aside p{font-size:15px;line-height:1.6}
+.account-panel{padding:clamp(28px,5vw,65px)}
+.account-panel h1,.store-page h1{font:600 clamp(38px,4vw,58px)/1 var(--display);letter-spacing:-.065em;margin:22px 0}
+.account-intro,.store-lead{font-size:16px;color:#555c50;line-height:1.7;max-width:500px}
+.account-form{margin-top:32px;display:grid;gap:20px}.account-form label{display:grid;gap:8px;font-size:14px;font-weight:700}
+.account-form input{width:100%;min-height:52px;padding:12px 14px;border:1px solid #969d8e;border-radius:7px;background:#fff;color:var(--ink);font:16px var(--body)}
+.account-form input:focus-visible{outline:3px solid #7b9d17;outline-offset:2px}.account-form small,.checkout-card small{font-size:13px;color:#50574b;line-height:1.6}
+.account-submit{border:0;border-radius:30px;min-height:52px;background:var(--ink);color:#fff;padding:14px 22px;font:700 15px var(--body);cursor:pointer;width:100%}
+.account-submit:hover:not(:disabled){background:#3c4731}.account-submit:disabled{background:#d7dad0;color:#50574b;cursor:not-allowed}
+.link-button{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:200px;text-align:center}
+.account-form-links{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.account-form-links a{min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:4px;font-size:14px}
+.form-notice{padding:14px;border-left:4px solid #83a325;background:#eef5d9;color:#263315;font-size:14px;line-height:1.6}
+.store-page{max-width:none}.store-grid{max-width:1180px;margin:70px auto;display:grid;grid-template-columns:1fr 430px;gap:70px;align-items:start}
+.store-page h1 em{font-style:normal;font-weight:400}.store-list{padding-left:22px;line-height:2}.checkout-card,.empty-card{background:#fff;padding:32px;border:1px solid var(--line);border-radius:8px}
+.checkout-card h2,.dashboard-classes h2{font:600 26px var(--display);letter-spacing:-.04em}.checkout-card p,.empty-card p{font-size:15px;line-height:1.65;color:#4f574a}
+.checkout-price{display:flex;justify-content:space-between;gap:20px;border-block:1px solid var(--line);padding:20px 0;font-size:15px}.checkout-card small{display:block;margin-top:18px}
+.dashboard-classes{max-width:800px;margin-top:45px}.dashboard-classes .empty-card{margin:15px 0}.quiet-button{border:0;background:none;color:var(--ink);font:700 14px var(--body);cursor:pointer}
+.lesson-links{max-width:900px;list-style:none;padding:0;margin:35px 0}.lesson-links li{display:grid;grid-template-columns:36px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+.lesson-links li>a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;text-decoration:underline;text-underline-offset:4px}.lesson-links li>span:first-child{font-size:12px;color:#555c50}
+@media(max-width:700px){.account-layout,.store-grid{grid-template-columns:1fr;margin-top:32px;gap:0}.account-aside{min-height:230px;padding:25px}.account-aside strong{font-size:48px}.account-panel{padding:30px 24px}.store-grid{gap:30px}.checkout-card,.empty-card{padding:24px}.lesson-links li{grid-template-columns:28px 1fr}.lesson-links li>a,.lesson-links li>span:last-child{grid-column:2}}

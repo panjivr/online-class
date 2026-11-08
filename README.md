@@ -1,6 +1,6 @@
 # Remote Worker
 
-Fondasi website kelas kerja remote dengan Next.js App Router. Tahap saat ini adalah **pratinjau publikasi dan kurikulum**, bukan sistem penjualan yang sudah aktif.
+Website kelas kerja remote dengan Next.js App Router. Login, dashboard, checkout, dan area belajar memerlukan layanan serta konfigurasi yang belum otomatis tersedia.
 
 ## Menjalankan
 
@@ -27,11 +27,11 @@ Buka http://localhost:3000. Jalankan pemeriksaan dengan `npm run typecheck` dan 
 
 ## Belum aktif
 
-Belum ada registrasi akun, database, dashboard peserta/admin, pengambilan pembayaran, pengiriman email, video berbayar, materi unduhan, CMS, atau integrasi Figma. Jangan menerima pembayaran atau menyatakan fitur tersebut tersedia sebelum implementasi, konfigurasi, kebijakan, pengujian, dan izin konten siap.
+Akun, checkout Midtrans, dan akses materi memerlukan database, email transaksional, harga, serta kredensial gateway. Tanpa konfigurasi, akun dan pembayaran ditutup. Admin/CMS, pengelolaan refund, rekonsiliasi dan streaming privat belum tersedia. Jangan menerima pembayaran produksi sebelum konfigurasi dan uji menyeluruh selesai.
 
 ## Materi sumber
 
-Pengguna menyatakan kelas kerja remote adalah proyek kerja sama dengan pembuat materi. Akses, penggunaan, dan distribusi konten mengikuti kesepakatan para pemiliknya. Tautan sumber materi belum disimpan di repo maupun terhubung ke area peserta; repo ini bersifat publik. Kurikulum kelas desain merupakan rancangan dari presentasi pemilik.
+Pengguna menyatakan kelas kerja remote adalah proyek kerja sama dengan pembuat materi. Akses, penggunaan, dan distribusi konten mengikuti kesepakatan para pemiliknya. Tautan sumber materi disimpan sebagai rahasia pada preview, bukan di repo publik; area peserta membutuh­kan akun, database, dan hak akses yang aktif. Kurikulum kelas desain merupakan rancangan dari presentasi pemilik.
 
 ## Figma
 
@@ -39,4 +39,4 @@ Rancangan awal Figma Design: https://www.figma.com/design/j5jDIY3XYjz3r5Q8PBFYBB
 
 ## Berikutnya
 
-Lihat `docs/launch-checklist.md`. Rahasia layanan disimpan di environment penyedia, jangan ditaruh dalam repo.
+Lihat `docs/launch-checklist.md` dan `docs/setup-commerce.md`. Rahasia layanan disimpan di environment penyedia, jangan ditaruh dalam repo.

@@ -1,4 +1,5 @@
 import { faqs, modules } from "@/lib/course";
+import { MobileNav } from "@/components/mobile-nav";
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true" className="arrow">{diagonal ? "↗" : "→"}</span>;
@@ -36,30 +37,32 @@ function SectionLabel({ children, light = false }: { children: React.ReactNode; 
 
 export default function Home() {
   return (
-    <main id="top">
+    <>
+      <a className="skip-link" href="#konten">Langsung ke konten utama</a>
       <div className="announcement"><span>✳</span> Ruang belajar untuk langkah karier berikutnya <a href="#kelas">Kenali kelasnya <Arrow /></a></div>
-      <header className="site-header">
+      <header className="site-header" id="top">
         <div className="wrap nav-row">
           <Brand />
           <nav className="desktop-nav" aria-label="Navigasi utama"><a href="#tentang">Tentang</a><a href="#belajar">Alur belajar</a><a href="#kurikulum">Kurikulum</a><a href="#faq">FAQ</a></nav>
           <a className="nav-cta" href="#kelas">Jelajahi kelas <Arrow diagonal /></a>
-          <details className="mobile-menu"><summary aria-label="Buka menu navigasi"><span /><span /></summary><nav aria-label="Navigasi seluler"><a href="#tentang">Tentang</a><a href="#belajar">Alur belajar</a><a href="#kurikulum">Kurikulum</a><a href="#faq">FAQ</a><a href="#kelas">Jelajahi kelas ↗</a></nav></details>
+          <MobileNav />
         </div>
       </header>
 
+      <main id="konten" tabIndex={-1}>
       <section className="hero wrap">
         <div className="hero-copy">
           <div className="hero-kicker"><span className="kicker-spark">✳</span> A NEW WAY TO WORK <span className="kicker-line" /></div>
           <h1>Kerja bisa<br />dari <em>mana</em><br /><span>saja<span className="hero-period">.</span></span></h1>
           <p>Kesempatanmu lebih luas dari yang kamu kira. Siapkan skill, portofolio, dan langkahmu untuk dunia kerja remote.</p>
           <div className="hero-actions"><a className="button button-dark" href="#kelas">Mulai jelajahi <span><Arrow diagonal /></span></a><a className="text-link" href="#belajar">Lihat cara belajarnya <Arrow /></a></div>
-          <div className="hero-note"><div className="mini-avatars"><span>↗</span><span>✳</span><span>◎</span></div><p>Untuk kamu yang ingin<br /><strong>mulai melangkah lebih jauh.</strong></p></div>
+          <div className="hero-note"><div className="mini-avatars" aria-hidden="true"><span>↗</span><span>✳</span><span>◎</span></div><p>Untuk kamu yang ingin<br /><strong>mulai melangkah lebih jauh.</strong></p></div>
         </div>
         <HeroVisual />
         <div className="hero-side-label">YOUR CAREER, YOUR WAY &nbsp; / &nbsp; 01 — 26</div>
       </section>
 
-      <div className="ticker" aria-label="Topik belajar"><div><span>GLOBAL OPPORTUNITIES</span><b>✳</b><span>BUILD YOUR SKILLS</span><b>✳</b><span>WORK BEYOND BORDERS</span><b>✳</b><span>YOUR NEXT MOVE</span><b>✳</b><span>GLOBAL OPPORTUNITIES</span><b>✳</b></div></div>
+      <div className="ticker" aria-hidden="true"><div><span>GLOBAL OPPORTUNITIES</span><b>✳</b><span>BUILD YOUR SKILLS</span><b>✳</b><span>WORK BEYOND BORDERS</span><b>✳</b><span>YOUR NEXT MOVE</span><b>✳</b><span>GLOBAL OPPORTUNITIES</span><b>✳</b></div></div>
 
       <section className="intro section-pad" id="tentang">
         <div className="wrap intro-grid"><div><SectionLabel>TENTANG REMOTE WORKER</SectionLabel><h2>Peluang besar<br />dimulai dari <em>langkah kecil.</em></h2></div><div className="intro-copy"><p className="intro-lead">Bukan soal harus langsung tahu semuanya. Yang penting, kamu tahu harus mulai dari mana.</p><p>Remote Worker adalah ruang belajar yang dirancang untuk membantumu mengenal dunia kerja remote, membangun kemampuan, dan menyiapkan diri untuk peluang yang lebih luas.</p><a className="under-link" href="#belajar">Kenali perjalananmu <Arrow diagonal /></a></div></div>
@@ -94,7 +97,8 @@ export default function Home() {
       <section className="faq section-pad" id="faq"><div className="wrap faq-grid"><div><SectionLabel>GOOD TO KNOW</SectionLabel><h2>Masih ada<br /><em>pertanyaan?</em></h2><p>Beberapa hal yang mungkin ingin kamu ketahui sebelum memulai.</p></div><div className="faq-list">{faqs.map((item) => <details className="faq-item" key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></div></section>
 
       <section className="final-cta"><div className="wrap final-cta-inner"><div><span className="final-kicker">THE WORLD IS OPEN ↗</span><h2>Langkah barumu<br />dimulai <em>di sini.</em></h2><p>Kenali apa yang sedang kami siapkan untuk perjalanan remote-mu.</p><a className="button button-dark" href="#kelas">Jelajahi kelas <span><Arrow diagonal /></span></a></div><div className="final-art" aria-hidden="true"><span>✳</span><strong>GO<br />FURTHER<span>.</span></strong><small>YOUR NEXT CHAPTER AWAITS / RW</small></div></div></section>
+      </main>
       <footer><div className="wrap footer-main"><div><Brand /><p>Bangun skill. Buka peluang.<br />Melangkah lebih jauh.</p></div><div className="footer-nav"><div><strong>JELAJAHI</strong><a href="#tentang">Tentang</a><a href="#belajar">Alur belajar</a><a href="#kurikulum">Kurikulum</a></div><div><strong>INFORMASI</strong><a href="#faq">Pertanyaan umum</a><a href="#kelas">Status kelas</a></div></div></div><div className="wrap footer-bottom"><span>© 2026 REMOTE WORKER</span><span>MADE FOR YOUR NEXT MOVE &nbsp; ✳</span></div></footer>
-    </main>
+    </>
   );
 }

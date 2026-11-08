@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { remoteLessons } from "@/lib/catalog";
+import { LearningClassroom } from "@/components/learning-classroom";
 
 type Student = { id: string; name: string; order: boolean; payment: boolean; active: boolean };
 type View = "welcome" | "register" | "student" | "admin" | "lessons";
@@ -38,6 +38,7 @@ export function TrialExperience({ sources }: { sources: { videos: (string | null
     const next = { id: crypto.randomUUID(), name: clean, order: false, payment: false, active: false };
     save([next, ...students]); setSelected(next.id); setName(""); setView("student");
   }
+  if (view === "lessons" && current?.active) return <LearningClassroom demo studentName={current.name} studentId={current.id} sources={sources} onBack={() => setView("student")} />;
   return <main className="trial-page">
     <header className="trial-header"><a className="account-brand" href="/">rw<span> remoteworker.</span></a><a href="/">← Beranda</a></header>
     <div className="trial-wrap">
@@ -51,7 +52,6 @@ export function TrialExperience({ sources }: { sources: { videos: (string | null
         {(view === "student" || view === "lessons") && <section className="trial-panel"><span className="trial-tag">DASHBOARD PESERTA DEMO</span><h2>Ruang belajarmu.</h2><label className="trial-select">Pilih akun percobaan <select value={current?.id ?? ""} onChange={(event) => {setSelected(event.target.value); setView("student");}}>{students.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}</select></label>{current ? <>
           <div className="trial-card"><div><span className="trial-kicker">KELAS BERSAMA FIA</span><h3>Kerja Remote Internasional</h3><p>Rp99.000 · Seumur hidup · Update materi</p><p><strong>Status akses: {current.active ? "Aktif" : "Belum aktif"}</strong></p></div><div>{!current.order ? <button className="trial-primary" onClick={() => change(current.id, { order: true })}>Buat pesanan demo</button> : !current.payment ? <button className="trial-primary" onClick={() => change(current.id, { payment: true })}>Simulasikan konfirmasi pembayaran</button> : current.active ? <button className="trial-primary" onClick={() => setView("lessons")}>Lihat materi demo →</button> : <span className="trial-status">Menunggu persetujuan admin</span>}</div></div>
           {current.order && <p className="trial-help">Status pembayaran: {current.payment ? "dinyatakan terkirim dalam simulasi, belum diverifikasi secara nyata" : "menunggu simulasi"}. Tidak ada transaksi bank.</p>}
-          {view === "lessons" && current.active && <div className="trial-lessons"><h3>Materi kelas</h3><p>Tautan materi tersedia untuk pengujian dan belum terlindungi dalam demo publik ini.</p><ol>{remoteLessons.map((lesson, index) => <li key={lesson}>{lesson} {sources.videos[index] ? <a className="under-link" href={sources.videos[index]!} target="_blank" rel="noopener noreferrer">Buka video ↗</a> : <span> — tautan belum tersedia</span>}</li>)}</ol><p>Dokumen pendukung: CV, portofolio, cover letter, dan job tracker.</p>{sources.documents && <a className="under-link" href={sources.documents} target="_blank" rel="noopener noreferrer">Buka dokumen ↗</a>}</div>}
         </> : <p>Belum ada peserta demo. Silakan daftar terlebih dahulu.</p>}</section>}
         {view === "admin" && <section className="trial-panel"><span className="trial-tag">ADMIN DEMO</span><h2>Pusat kendali kelas.</h2><p>Periksa pesanan simulasi dan atur akses masing-masing peserta. Seluruh data di bawah hanya berada di browser ini.</p><div className="trial-stats"><div><strong>{students.length}</strong><span>Peserta demo</span></div><div><strong>{students.filter((s) => s.order && !s.active).length}</strong><span>Menunggu akses</span></div><div><strong>{students.filter((s) => s.active).length}</strong><span>Akses aktif</span></div></div><div className="trial-roster">{students.map((s) => <article key={s.id}><div><h3>{s.name}</h3><p>Pesanan: {s.order ? "Dibuat" : "Belum ada"} · Pembayaran: {s.payment ? "Dilaporkan (simulasi)" : "Belum dilaporkan"} · Akses: {s.active ? "Aktif" : "Nonaktif"}</p></div><div className="trial-actions">{s.active ? <button className="trial-secondary" onClick={() => change(s.id, { active: false })}>Nonaktifkan akses</button> : <button className="trial-primary" disabled={!s.order || !s.payment} onClick={() => change(s.id, { active: true })}>Setujui akses</button>}<button className="trial-text-button" onClick={() => {setSelected(s.id); setView("student");}}>Lihat sebagai peserta</button></div></article>)}</div><p className="trial-help">Admin demo terbuka tanpa autentikasi dan tidak memeriksa uang masuk. Untuk penggunaan sesungguhnya diperlukan login admin aman, database dan verifikasi pembayaran.</p></section>}
       </>}

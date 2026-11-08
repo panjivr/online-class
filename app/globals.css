@@ -42,3 +42,54 @@ main:focus{outline:none}
   .footer-nav{gap:32px}
 }
 @media(max-width:350px){.hero h1{font-size:clamp(47px,15vw,55px)}}
+
+/* Course catalogue and partner contact */
+.more-courses{background:#f1f3e8}
+.catalog-heading{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:45px}
+.catalog-heading h2,.remote-lesson-box h3{font:600 clamp(40px,4.7vw,68px)/1 var(--display);letter-spacing:-.07em;margin:25px 0 0}
+.catalog-heading h2 em,.remote-lesson-box h3 em,.design-course h3 em{font-style:normal;font-weight:400}
+.catalog-heading>p{max-width:330px;color:#50574b;line-height:1.7;font-size:16px}
+.design-course-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.design-course{background:#fff;display:grid;grid-template-columns:.83fr 1.17fr;min-width:0}
+.design-course-art{padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:480px;color:var(--ink);overflow:hidden}
+.design-course-art.lavender{background:#d8d6ff}
+.design-course-art.peach{background:#ffdcc3}
+.design-course-art>div{display:flex;justify-content:space-between;font-size:10px;font-weight:700;letter-spacing:.09em}
+.design-course-art strong{font:700 clamp(35px,3.8vw,54px)/.92 var(--display);letter-spacing:-.08em}
+.design-course-art strong span{font-size:.5em;margin-left:5px;vertical-align:top}
+.design-course-art small{font-size:10px;font-weight:700;letter-spacing:.1em}
+.design-course-body{padding:26px;display:flex;flex-direction:column;align-items:flex-start}
+.catalog-status{font-size:10px;letter-spacing:.08em;font-weight:700;display:flex;align-items:center;gap:7px}
+.catalog-status span{width:8px;height:8px;border-radius:50%;background:#6b8c15}
+.catalog-kicker{font-size:11px!important;letter-spacing:.1em;font-weight:700;color:#50574b;margin:22px 0 8px}
+.design-course h3{font:600 clamp(27px,2.6vw,38px)/1.05 var(--display);letter-spacing:-.06em;margin:0}
+.design-course-body>p:not(.catalog-kicker),.catalog-details p,.catalog-details li,.remote-lesson-box p{font-size:15px;line-height:1.65;color:#50574b}
+.course-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;line-height:1.5;margin:10px 0 18px}
+.catalog-details{width:100%;border-top:1px solid #dcded4;border-bottom:1px solid #dcded4;margin-bottom:12px}
+.catalog-details summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:700;font-size:14px}
+.catalog-details summary span{font-size:22px;font-weight:400}
+.catalog-details[open] summary span{transform:rotate(45deg)}
+.catalog-details ul{padding-left:20px;margin:12px 0 20px}
+.catalog-details li{margin-bottom:8px}
+.catalog-contact,.course-content-link{display:inline-flex;align-items:center;gap:12px;min-height:48px;font-size:14px;font-weight:700}
+.catalog-contact{margin-top:auto;text-decoration:underline;text-underline-offset:5px}
+.course-content-link{color:var(--neon);margin-top:12px}
+.remote-lesson-box{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;margin-top:24px;padding:54px;background:#fff}
+.remote-lesson-box h3{font-size:clamp(38px,4vw,56px)}
+.remote-lesson-box p{max-width:420px;margin:24px 0}
+.remote-lessons{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.remote-lessons li{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;min-height:52px;padding:12px 0;border-bottom:1px solid var(--line);font:600 15px/1.4 var(--display)}
+.remote-lessons li span{font:700 11px var(--body);color:#5b6254}
+.footer-social{display:flex;flex-direction:column}
+.footer-social a span{margin-left:6px}
+.partner-section{background:#e9ecdf}
+.mentor-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mentor-grid article{display:flex;gap:24px;align-items:center;padding:26px;background:#f9faf5}
+.mentor-grid h3{font:600 32px var(--display);letter-spacing:-.06em;margin:6px 0}
+.mentor-grid p:not(.mentor-kicker){font-size:15px;line-height:1.65;color:#50574b;margin:0}
+.mentor-kicker{font-size:10px;font-weight:700;letter-spacing:.1em}
+.mentor-monogram{display:grid;place-items:center;position:relative;flex:0 0 112px;width:112px;height:112px;font:700 55px var(--display)}
+.mentor-monogram span{position:absolute;right:8px;top:4px;font-size:20px}
+.mentor-lime{background:var(--neon)}.mentor-lavender{background:var(--purple)}
+@media(max-width:1100px){.design-course{grid-template-columns:1fr}.design-course-art{min-height:260px}.design-course-art strong{font-size:52px}.design-course-body{min-height:360px}}
+@media(max-width:700px){.catalog-heading{display:block}.catalog-heading>p{margin-top:20px}.design-course-grid,.remote-lesson-box,.mentor-grid{grid-template-columns:1fr}.design-course-art{min-height:240px}.design-course-body{min-height:auto}.remote-lesson-box{gap:30px;padding:28px}.catalog-contact{margin-top:8px}.footer-social a{min-height:48px}.mentor-grid article{padding:20px;gap:18px}.mentor-monogram{flex-basis:88px;width:88px;height:88px}}

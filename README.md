@@ -19,6 +19,8 @@ Buka http://localhost:3000. Jalankan pemeriksaan dengan `npm run typecheck` dan 
 - Navigasi, rincian kurikulum dan FAQ interaktif.
 - Salinan yang menyatakan kelas masih dipersiapkan dan tidak menjanjikan pekerjaan.
 - Daftar modul dan FAQ terpusat di `lib/course.ts`.
+- Katalog kelas kerja remote, desain Canva, dan desain berbantuan AI di `lib/catalog.ts`.
+- Kontak WhatsApp, Instagram, dan TikTok untuk informasi kelas.
 - Token desain di `app/globals.css` sebagai dasar penyelarasan Figma.
 - Rancangan skema PostgreSQL/Prisma di `prisma/schema.prisma`; belum terhubung ke database.
 - Metadata yang tidak meminta pengindeksan selama pratinjau.
@@ -29,7 +31,7 @@ Belum ada registrasi akun, database, dashboard peserta/admin, pengambilan pembay
 
 ## Materi sumber
 
-Materi referensi pihak ketiga memiliki pembatasan penggunaan pribadi dan tidak untuk dijual atau didistribusikan ulang. Gunakan materi yang dibuat sendiri atau yang memiliki izin tertulis. Nama modul saat ini merupakan rancangan, bukan materi kelas yang sudah diproduksi.
+Pengguna menyatakan kelas kerja remote adalah proyek kerja sama dengan pembuat materi. Akses, penggunaan, dan distribusi konten mengikuti kesepakatan para pemiliknya. Tautan sumber materi belum disimpan di repo maupun terhubung ke area peserta; repo ini bersifat publik. Kurikulum kelas desain merupakan rancangan dari presentasi pemilik.
 
 ## Figma
 

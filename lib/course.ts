@@ -15,5 +15,5 @@ export const faqs = [
   { question: "Apakah kelas ini cocok untuk pemula?", answer: "Kurikulumnya dirancang untuk membantu pemula memahami langkah dasar. Beberapa pekerjaan tetap membutuhkan keterampilan tertentu yang perlu dipelajari dan dilatih." },
   { question: "Apakah harus bisa bahasa Inggris?", answer: "Kebutuhannya tergantung perusahaan dan posisi. Untuk banyak peluang internasional, kemampuan komunikasi bahasa Inggris akan sangat membantu." },
   { question: "Apakah setelah kelas pasti langsung dapat kerja?", answer: "Tidak ada jaminan diterima kerja atau mendapatkan penghasilan tertentu. Hasil dipengaruhi kemampuan, kebutuhan perusahaan, pasar, dan proses setiap peserta." },
-  { question: "Kapan kelas bisa dibeli?", answer: "Kelas sedang dipersiapkan. Informasi jadwal, harga, instruktur, dan akses akan diumumkan setelah semuanya siap." }
+  { question: "Bagaimana cara bertanya tentang kelas dan akses?", answer: "Hubungi admin melalui tombol WhatsApp di halaman ini untuk menanyakan kelas, harga, jadwal, dan cara mendapatkan akses." }
 ];

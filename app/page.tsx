@@ -1,5 +1,8 @@
 import { faqs, modules } from "@/lib/course";
 import { MobileNav } from "@/components/mobile-nav";
+import { CourseCatalog } from "@/components/course-catalog";
+import { ContactLinks } from "@/components/contact-links";
+import { whatsappFor } from "@/lib/catalog";
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true" className="arrow">{diagonal ? "↗" : "→"}</span>;
@@ -82,10 +85,12 @@ export default function Home() {
       <section className="course-section section-pad" id="kelas">
         <div className="wrap"><div className="section-heading course-heading"><div><SectionLabel light>THE LEARNING SPACE</SectionLabel><h2>Siap untuk<br /><em>langkah berikutnya?</em></h2></div><p>Sebuah ruang belajar praktis, disiapkan untuk kamu yang ingin memahami peluang kerja remote dari awal.</p></div>
           <div className="course-card"><div className="course-art"><div className="course-art-top"><span>REMOTE WORKER / CLASS 01</span><span>✳</span></div><div className="course-art-center"><span>THE</span><strong>REMOTE<br />STARTER<span>✳</span></strong><small>YOUR CAREER, BEYOND BOUNDARIES</small></div><div className="course-art-bottom"><span>LEARN. BUILD. EXPLORE.</span><span>↗</span></div></div>
-            <div className="course-info"><div className="pill"><span /> DALAM PERSIAPAN</div><p className="course-category">KELAS ONLINE / PEMULA</p><h3>Remote Worker:<br /><em>Mulai dari Nol.</em></h3><p>Kenali dunia kerja remote dan siapkan bekal yang kamu butuhkan, selangkah demi selangkah.</p><div className="course-tags"><span>✳ &nbsp; Praktis</span><span>✳ &nbsp; Bahasa Indonesia</span><span>✳ &nbsp; Belajar mandiri</span></div><div className="course-card-footer"><div><small>STATUS KELAS</small><strong>Sedang dipersiapkan</strong></div><a href="#kurikulum" className="circle-link" aria-label="Lihat rencana kurikulum">↗</a></div></div>
-          </div><p className="course-disclaimer">Informasi kelas, harga, instruktur, dan akses akan diumumkan setelah siap. Hasil belajar setiap peserta berbeda dan tidak menjamin pekerjaan atau penghasilan.</p>
+            <div className="course-info"><div className="pill"><span /> INFORMASI KELAS TERSEDIA</div><p className="course-category">KELAS ONLINE / BERSAMA FIA</p><h3>Remote Worker:<br /><em>Mulai dari Nol.</em></h3><p>Kenali dunia kerja remote dan siapkan bekal yang kamu butuhkan, selangkah demi selangkah.</p><div className="course-tags"><span>✳ &nbsp; Panduan video</span><span>✳ &nbsp; Bahasa Indonesia</span><span>✳ &nbsp; Dokumen pendukung</span></div><div className="course-card-footer"><div><small>INFORMASI DAN AKSES</small><strong>Hubungi admin via WhatsApp</strong></div><a href={whatsappFor("Kerja Remote Internasional")} target="_blank" rel="noopener noreferrer" className="circle-link" aria-label="Tanya kelas remote melalui WhatsApp">↗</a></div><a className="course-content-link" href="#materi-remote">Lihat 8 topik video dan materi <span aria-hidden="true">→</span></a></div>
+          </div><p className="course-disclaimer">Hubungi admin untuk informasi harga dan akses. Hasil belajar setiap peserta berbeda dan tidak menjamin pekerjaan atau penghasilan.</p>
         </div>
       </section>
+
+      <CourseCatalog />
 
       <section className="curriculum section-pad" id="kurikulum">
         <div className="wrap curriculum-grid"><div className="curriculum-intro"><SectionLabel>WHAT YOU WILL LEARN</SectionLabel><h2>Bekal untuk<br /><em>melangkah.</em></h2><p>Ini adalah rancangan topik yang sedang kami siapkan. Materi akhir dapat disesuaikan sebelum kelas dibuka.</p><div className="curriculum-stamp"><span>✳</span><div>MADE FOR<br /><strong>YOUR NEXT MOVE</strong></div></div></div>
@@ -94,11 +99,13 @@ export default function Home() {
 
       <section className="manifesto"><div className="wrap manifesto-inner"><span className="manifesto-spark">✳</span><div><SectionLabel light>BUILT FOR THE CURIOUS</SectionLabel><h2>Bukan tentang<br />seberapa jauh kamu,<br /><em>tapi ke mana kamu mau pergi.</em></h2></div><div className="manifesto-side"><span>01 / KEEP LEARNING</span><span>02 / KEEP GROWING</span><span>03 / KEEP EXPLORING</span></div></div></section>
 
+      <section className="partner-section section-pad" id="pengajar"><div className="wrap"><div className="catalog-heading"><div><SectionLabel>PEOPLE BEHIND THE CLASS</SectionLabel><h2>Belajar bersama<br /><em>orang di balik kelasnya.</em></h2></div><p>Dua sudut pandang, satu ruang belajar untuk menyiapkan langkah dan karya berikutnya.</p></div><div className="mentor-grid"><article><div className="mentor-monogram mentor-lime" aria-hidden="true">F<span>✳</span></div><div><p className="mentor-kicker">KELAS KERJA REMOTE</p><h3>Fia</h3><p>Berbagi panduan dan pengalaman untuk memulai perjalanan kerja remote internasional.</p></div></article><article><div className="mentor-monogram mentor-lavender" aria-hidden="true">P<span>✳</span></div><div><p className="mentor-kicker">KELAS DESAIN &amp; AI</p><h3>Panji Vr</h3><p>Menyiapkan kelas desain visual, Canva, dan eksplorasi AI untuk proses kreatif.</p></div></article></div></div></section>
+
       <section className="faq section-pad" id="faq"><div className="wrap faq-grid"><div><SectionLabel>GOOD TO KNOW</SectionLabel><h2>Masih ada<br /><em>pertanyaan?</em></h2><p>Beberapa hal yang mungkin ingin kamu ketahui sebelum memulai.</p></div><div className="faq-list">{faqs.map((item) => <details className="faq-item" key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></div></section>
 
       <section className="final-cta"><div className="wrap final-cta-inner"><div><span className="final-kicker">THE WORLD IS OPEN ↗</span><h2>Langkah barumu<br />dimulai <em>di sini.</em></h2><p>Kenali apa yang sedang kami siapkan untuk perjalanan remote-mu.</p><a className="button button-dark" href="#kelas">Jelajahi kelas <span><Arrow diagonal /></span></a></div><div className="final-art" aria-hidden="true"><span>✳</span><strong>GO<br />FURTHER<span>.</span></strong><small>YOUR NEXT CHAPTER AWAITS / RW</small></div></div></section>
       </main>
-      <footer><div className="wrap footer-main"><div><Brand /><p>Bangun skill. Buka peluang.<br />Melangkah lebih jauh.</p></div><div className="footer-nav"><div><strong>JELAJAHI</strong><a href="#tentang">Tentang</a><a href="#belajar">Alur belajar</a><a href="#kurikulum">Kurikulum</a></div><div><strong>INFORMASI</strong><a href="#faq">Pertanyaan umum</a><a href="#kelas">Status kelas</a></div></div></div><div className="wrap footer-bottom"><span>© 2026 REMOTE WORKER</span><span>MADE FOR YOUR NEXT MOVE &nbsp; ✳</span></div></footer>
+      <footer><div className="wrap footer-main"><div><Brand /><p>Bangun skill. Buka peluang.<br />Melangkah lebih jauh.</p></div><div className="footer-nav"><div><strong>JELAJAHI</strong><a href="#tentang">Tentang</a><a href="#belajar">Alur belajar</a><a href="#kurikulum">Kurikulum</a><a href="#kelas-canva">Kelas desain</a></div><div><strong>HUBUNGI KAMI</strong><ContactLinks className="footer-social" /><a href="#faq">Pertanyaan umum</a></div></div></div><div className="wrap footer-bottom"><span>© 2026 REMOTE WORKER</span><span>MADE FOR YOUR NEXT MOVE &nbsp; ✳</span></div></footer>
     </>
   );
 }

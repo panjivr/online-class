@@ -3,7 +3,7 @@
 Status: belum siap berjualan.
 
 - [ ] Tetapkan instruktur, informasi pengelola, kontak, harga, masa akses dan kebijakan refund.
-- [ ] Produksi dan periksa seluruh materi orisinal atau memperoleh lisensi komersial tertulis.
+- [ ] Finalkan kesepakatan penggunaan, akses, distribusi, dan pembagian peran atas materi kerja sama.
 - [ ] Bangun sistem akun dengan verifikasi email, reset password, otorisasi server dan rate limiting.
 - [ ] Sediakan database, migrations, backup dan pengujian pemulihan.
 - [ ] Bangun katalog, checkout, order, enrollment dan dashboard peserta serta admin.

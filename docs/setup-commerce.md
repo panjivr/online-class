@@ -28,4 +28,4 @@ YouTube unlisted dan Google Drive tetap dapat dibagikan oleh peserta yang meneri
 
 ## Simulasi publik
 
-Halaman /trial menyimpan data fiktif di localStorage browser; login dan admin terbuka adalah simulasi dan tidak boleh dipakai untuk data pribadi atau transaksi. Pendaftar tidak tersinkron antar perangkat. Persetujuan di sana tidak memberikan hak atas materi asli. Sistem admin sungguhan, pendaftaran, dan verifikasi pembayaran tetap perlu dibangun dan diuji memakai database bersama sebelum peluncuran.
+Halaman /trial menyimpan data fiktif di localStorage browser; login dan admin terbuka adalah simulasi dan tidak boleh dipakai untuk data pribadi atau transaksi. Pendaftar tidak tersinkron antar perangkat. Sesuai izin pemilik, sumber materi asli disertakan untuk percobaan dalam halaman publik dan dapat ditemukan tanpa autentikasi; tombol persetujuan tidak melindungi tautan tersebut. Hapus penyajian sumber pada demo publik sebelum penjualan. Sistem admin sungguhan, pendaftaran, dan verifikasi pembayaran tetap perlu dibangun dan diuji memakai database bersama sebelum peluncuran.

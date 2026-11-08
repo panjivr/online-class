@@ -56,7 +56,7 @@ export function AuthForm({ mode, configured, token }: { mode: Mode; configured: 
       {mode === "register" && <label>Nama lengkap<input name="name" autoComplete="name" required maxLength={100} /></label>}
       {mode !== "reset" && <label>Alamat email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>}
       {(mode === "login" || mode === "register" || mode === "reset") && <label>Kata sandi<input name="password" type="password" autoComplete={mode === "login" ? "current-password" : "new-password"} minLength={10} maxLength={128} required />{mode !== "login" && <small>Minimal 10 karakter.</small>}</label>}
-      {!configured && <p className="form-notice">Layanan akun sedang disiapkan. Pendaftaran dan login belum aktif.</p>}
+      {!configured && <p className="form-notice">Akun sungguhan sedang disiapkan. <a href="/trial"><strong>Coba pendaftaran dan login demo →</strong></a></p>}
       {mode === "reset" && !token && <p className="form-notice">Tautan tidak lengkap. Minta tautan pengaturan ulang yang baru.</p>}
       {message && <p className="form-notice" role="status">{message}</p>}
       <button className="account-submit" type="submit" disabled={busy || !configured || (mode === "reset" && !token)}>

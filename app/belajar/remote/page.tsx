@@ -16,7 +16,7 @@ export default async function RemoteLessonsPage() {
   const session = await currentSession();
   if (!session) redirect("/masuk");
   const now = new Date();
-  const access = await getPrisma().enrollment.findFirst({ where: { userId: session.user.id, status: "ACTIVE", startsAt: { lte: now }, expiresAt: { gt: now }, course: { slug: "kerja-remote-internasional" } } });
+  const access = await getPrisma().enrollment.findFirst({ where: { userId: session.user.id, status: "ACTIVE", startsAt: { lte: now }, OR: [{ expiresAt: null }, { expiresAt: { gt: now } }], course: { slug: "kerja-remote-internasional" } } });
   if (!access) return <main className="store-page"><div className="checkout-card"><h1>Kelas belum tersedia di akunmu.</h1><p>Pastikan pembayaran sudah terkonfirmasi atau hubungi admin.</p><a href="/checkout/remote" className="under-link">Lihat detail kelas →</a></div></main>;
   let source: { videos?: unknown[]; documents?: unknown } = {};
   try { source = JSON.parse(process.env.REMOTE_COURSE_PRIVATE_SOURCES ?? "{}"); } catch { /* no private source configured */ }

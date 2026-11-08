@@ -108,7 +108,7 @@ model Course {
   description        String            @db.Text
   status             PublicationStatus @default(DRAFT)
   priceIdr           Int
-  accessDurationDays Int
+  accessDurationDays Int?
   createdAt          DateTime          @default(now())
   updatedAt          DateTime          @updatedAt
   modules            CourseModule[]
@@ -179,7 +179,7 @@ model OrderItem {
   courseId           String
   titleSnapshot      String
   amountIdr          Int
-  accessDaysSnapshot Int
+  accessDaysSnapshot Int?
   order              Order  @relation(fields: [orderId], references: [id])
   course             Course @relation(fields: [courseId], references: [id])
 
@@ -218,7 +218,7 @@ model Enrollment {
   sourceOrderId String
   status        EnrollmentStatus @default(ACTIVE)
   startsAt      DateTime
-  expiresAt     DateTime
+  expiresAt     DateTime?
   user          User             @relation(fields: [userId], references: [id])
   course        Course           @relation(fields: [courseId], references: [id])
   sourceOrder   Order            @relation(fields: [sourceOrderId], references: [id])

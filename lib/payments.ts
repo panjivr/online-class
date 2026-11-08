@@ -7,13 +7,8 @@ export function remotePrice() {
   return Number.isSafeInteger(amount) && amount >= 1000 && amount <= 100_000_000 ? amount : null;
 }
 
-export function accessDays() {
-  const days = Number(process.env.REMOTE_COURSE_ACCESS_DAYS ?? "");
-  return Number.isSafeInteger(days) && days >= 1 && days <= 3650 ? days : null;
-}
-
 export function paymentConfigured() {
-  return Boolean(process.env.MIDTRANS_SERVER_KEY && remotePrice() && accessDays());
+  return Boolean(process.env.MIDTRANS_SERVER_KEY && remotePrice());
 }
 
 export function midtransBase() {

@@ -1,6 +1,6 @@
 import { currentSession } from "@/lib/session";
 import { getPrisma } from "@/lib/prisma";
-import { accessDays, midtransBase, midtransHeaders, paymentConfigured, remotePrice } from "@/lib/payments";
+import { midtransBase, midtransHeaders, paymentConfigured, remotePrice } from "@/lib/payments";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   try { input = await request.json(); } catch { return Response.json({ error: "Permintaan tidak valid." }, { status: 400 }); }
   if (typeof input.key !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.key)) return Response.json({ error: "Permintaan tidak valid." }, { status: 400 });
   const price = remotePrice()!;
-  const days = accessDays()!;
+  const days = null; // Lifetime access has no expiry.
   const db = getPrisma();
   try {
     const course = await db.course.upsert({
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       create: { slug: "kerja-remote-internasional", title: "Kerja Remote Internasional dari Nol", description: "Panduan kerja remote internasional", priceIdr: price, accessDurationDays: days },
       update: { priceIdr: price, accessDurationDays: days }
     });
-    const enrolled = await db.enrollment.findFirst({ where: { userId: session.user.id, courseId: course.id, status: "ACTIVE", startsAt: { lte: new Date() }, expiresAt: { gt: new Date() } } });
+    const enrolled = await db.enrollment.findFirst({ where: { userId: session.user.id, courseId: course.id, status: "ACTIVE", startsAt: { lte: new Date() }, OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }] } });
     if (enrolled) return Response.json({ error: "Kamu sudah memiliki akses ke kelas ini." }, { status: 409 });
     const order = await db.order.upsert({
       where: { idempotencyKey: input.key },

@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#konten">Langsung ke konten utama</a>
-      <div className="announcement"><span>✳</span> Ruang belajar untuk langkah karier berikutnya <a href="#kelas">Kenali kelasnya <Arrow /></a></div>
+      <div className="announcement"><span>✳</span> Versi percobaan tersedia <a href="/trial">Coba dashboard peserta &amp; admin <Arrow /></a></div>
       <header className="site-header" id="top">
         <div className="wrap nav-row">
           <Brand />

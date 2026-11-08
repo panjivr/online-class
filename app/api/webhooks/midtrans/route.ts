@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       if (updated.count === 0) return;
       const startsAt = new Date();
       for (const item of order.items) {
-        const expiresAt = new Date(startsAt.getTime() + item.accessDaysSnapshot * 86_400_000);
+        const expiresAt = item.accessDaysSnapshot === null ? null : new Date(startsAt.getTime() + item.accessDaysSnapshot * 86_400_000);
         await tx.enrollment.create({ data: { userId: order.userId, courseId: item.courseId, sourceOrderId: order.id, startsAt, expiresAt } });
       }
     });

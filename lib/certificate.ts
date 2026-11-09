@@ -1,4 +1,4 @@
-export async function downloadCertificate(name: string, date: string, demo: boolean) {
+export async function downloadCertificate(name: string, date: string, demo: boolean, lessonCount: number) {
   const { jsPDF } = await import("jspdf");
   const canvas = document.createElement("canvas");
   canvas.width = 1800; canvas.height = 1272;
@@ -17,7 +17,7 @@ export async function downloadCertificate(name: string, date: string, demo: bool
   c.strokeStyle = "#a7cf53"; c.lineWidth = 4; c.beginPath(); c.moveTo(420, 663); c.lineTo(1380, 663); c.stroke();
   text("telah menyelesaikan seluruh materi kelas", 735, "30px sans-serif", "#586b50");
   text("Kerja Remote Internasional dari Nol", 800, "bold 42px sans-serif");
-  text("12 pelajaran • Fia / @fiiiremoteworker", 870, "28px sans-serif", "#586b50");
+  text(`${lessonCount} pelajaran • Fia / @fiiiremoteworker`, 870, "28px sans-serif", "#586b50");
   text(date, 1010, "bold 27px sans-serif");
   text(demo ? "CONTOH • BUKAN SERTIFIKAT RESMI ATAU TERVERIFIKASI" : "Penyelesaian ditandai mandiri • belum diverifikasi", 1130, "bold 21px sans-serif", "#586b50");
   const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4", compress: true });

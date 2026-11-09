@@ -136,3 +136,20 @@ html[data-theme=dark]{color-scheme:dark;--paper:#111915;--ink:#edf3e8;--line:#3a
 /* Keep dark text legible on bright illustration and callout surfaces. */
 html[data-theme=dark] .learn-task .learn-eyebrow,html[data-theme=dark] .learn-resource .learn-eyebrow,html[data-theme=dark] .certificate-card .learn-eyebrow{color:#435a35!important}
 html[data-theme=dark] .hero-visual,html[data-theme=dark] .course-art,html[data-theme=dark] .design-course-art,html[data-theme=dark] .account-aside{--ink:#182018;color:#182018}
+/* Dark-mode contrast audit: keep neon accents on dark, and dark ink on bright art. */
+html[data-theme=dark] .announcement,html[data-theme=dark] .ticker{background:#1b281e;color:#f2f7ed}
+html[data-theme=dark] .announcement a,html[data-theme=dark] .ticker{color:#caff56}
+html[data-theme=dark] .brand-mark{background:#caff56;color:#172118}
+html[data-theme=dark] .brand-mark i{background:#172118}
+html[data-theme=dark] .hero-copy>p,html[data-theme=dark] .hero-note p,html[data-theme=dark] .section-heading>p,html[data-theme=dark] .path-card p,html[data-theme=dark] .module p,html[data-theme=dark] .faq-item p,html[data-theme=dark] .catalog-heading>p,html[data-theme=dark] .checkout-card p,html[data-theme=dark] .checkout-card small,html[data-theme=dark] .empty-card p{color:#c5d2bf}
+html[data-theme=dark] .button-dark{background:#caff56;color:#182018}
+html[data-theme=dark] .button-dark>span{background:#182018;color:#caff56}
+html[data-theme=dark] .hero-visual .float-card{background:#f7f8f0;color:#182018;border-color:#182018;box-shadow:5px 5px 0 #182018}
+html[data-theme=dark] .hero-note .mini-avatars span{color:#182018}
+html[data-theme=dark] .path-art,html[data-theme=dark] .final-cta{--ink:#182018;--paper:#f7f8f0;color:#182018}
+html[data-theme=dark] .final-cta .button-dark{background:#182018;color:#fff}
+html[data-theme=dark] .final-cta .button-dark>span{background:#caff56;color:#182018}
+html[data-theme=dark] .circle-link{color:#182018}
+html[data-theme=dark] .nav-cta:hover{background:#caff56;color:#182018}
+html[data-theme=dark] .form-notice{background:#263c22;color:#edf7e9}
+html[data-theme=dark] .learn-task .learn-eyebrow,html[data-theme=dark] .learn-resource .learn-eyebrow,html[data-theme=dark] .certificate-card .learn-eyebrow{color:#435a35!important}

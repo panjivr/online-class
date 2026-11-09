@@ -17,6 +17,8 @@ export function LearningClassroom({ studentName, studentId, sources, onBack, dem
   const [selected, setSelected] = useState(0);
   const [completed, setCompleted] = useState<string[]>([]);
   const [storageMessage, setStorageMessage] = useState("");
+  const [finishedAt, setFinishedAt] = useState("");
+  const [generating, setGenerating] = useState(false);
   const lesson = allClassroomLessons[selected];
   const isComplete = completed.includes(lesson.id);
   const percent = Math.round(completed.length / allClassroomLessons.length * 100);
@@ -25,14 +27,17 @@ export function LearningClassroom({ studentName, studentId, sources, onBack, dem
     try {
       const stored: unknown = JSON.parse(localStorage.getItem(key) ?? "[]");
       setCompleted(Array.isArray(stored) ? stored.filter((id): id is string => typeof id === "string" && allClassroomLessons.some((l) => l.id === id)).filter((id, index, arr) => arr.indexOf(id) === index) : []);
+      const last = localStorage.getItem(`${key}:last`); const index = allClassroomLessons.findIndex((item) => item.id === last); if (index >= 0) setSelected(index);
+      setFinishedAt(localStorage.getItem(`${key}:finished`) ?? "");
     } catch { setStorageMessage("Progres tidak dapat dimuat dari browser."); }
   }, [key]);
   function toggleCompletion() {
     const next = isComplete ? completed.filter((id) => id !== lesson.id) : [...completed, lesson.id];
     setCompleted(next);
-    try { localStorage.setItem(key, JSON.stringify(next)); setStorageMessage(""); } catch { setStorageMessage("Progres tidak dapat disimpan di browser."); }
+    try { localStorage.setItem(key, JSON.stringify(next)); if (next.length === allClassroomLessons.length) { const date = localStorage.getItem(`${key}:finished`) ?? new Date().toISOString(); localStorage.setItem(`${key}:finished`, date); setFinishedAt(date); } else { localStorage.removeItem(`${key}:finished`); setFinishedAt(""); } setStorageMessage(""); } catch { setStorageMessage("Progres tidak dapat disimpan di browser."); }
   }
-  function choose(index: number) { setSelected(index); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function choose(index: number) { setSelected(index); try { localStorage.setItem(`${key}:last`, allClassroomLessons[index].id); } catch { /* navigation remains usable */ } window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
+  async function certificate() { if (completed.length !== allClassroomLessons.length) return; setGenerating(true); try { const { downloadCertificate } = await import("@/lib/certificate"); const date = new Intl.DateTimeFormat("id-ID", { dateStyle: "long" }).format(finishedAt ? new Date(finishedAt) : new Date()); await downloadCertificate(studentName, date, demo); } catch { setStorageMessage("Sertifikat belum dapat dibuat. Coba lagi di browser ini."); } finally { setGenerating(false); } }
   return <main className="learn-page">
     <header className="learn-header"><div>{onBack ? <button className="learn-back" onClick={onBack}>← Dashboard peserta</button> : <a className="learn-back" href="/dashboard">← Dashboard peserta</a>}<span className="learn-header-divider" aria-hidden="true"/><a href="/" className="learn-brand">rw<span> remoteworker.</span></a></div><span className="learn-demo-label">{demo ? "DEMO · " : ""}{studentName}</span></header>
     <div className="learn-shell"><aside className="learn-sidebar"><div className="learn-sidebar-top"><span className="learn-eyebrow">KELAS BERSAMA FIA</span><h2>Kerja Remote<br />Internasional<span>.</span></h2><p>Perjalananmu dimulai dari sini.</p><div className="learn-progress-head"><span>Progres belajar</span><strong>{percent}%</strong></div><div className="learn-progress" role="progressbar" aria-label="Progres belajar" aria-valuenow={completed.length} aria-valuemin={0} aria-valuemax={allClassroomLessons.length}><span style={{ width: `${percent}%` }}/></div><small>{completed.length} dari {allClassroomLessons.length} pelajaran selesai</small></div>
@@ -44,6 +49,7 @@ export function LearningClassroom({ studentName, studentId, sources, onBack, dem
         <section className="learn-task"><span className="learn-task-icon">✳</span><div><span className="learn-eyebrow">SAATNYA PRAKTIK</span><h2>Langkah kecilmu selanjutnya.</h2><p>{lesson.task}</p></div></section>
         {lesson.resource && <section className="learn-resource"><div><span className="learn-eyebrow">BAHAN PENDUKUNG</span><h2>Template &amp; dokumen kelas</h2><p>Akses referensi CV, cover letter, portofolio, dan job tracker dari folder kelas.</p></div>{sources.documents ? <a href={sources.documents} target="_blank" rel="noopener noreferrer">Buka dokumen ↗</a> : <span>Dokumen belum tersedia.</span>}</section>}
         <div className="learn-complete"><div><strong>{isComplete ? "Pelajaran selesai ✓" : "Sudah selesai mempelajari materi ini?"}</strong><p>Tandai sendiri setelah membaca, menonton, dan mencoba latihannya.</p>{storageMessage && <p role="status">{storageMessage}</p>}</div><button onClick={toggleCompletion} className={isComplete ? "learn-button-secondary" : "learn-button"}>{isComplete ? "Batalkan tanda selesai" : "Tandai selesai ✓"}</button></div>
+        {completed.length === allClassroomLessons.length && <section className="certificate-card"><div className="certificate-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="26" r="18" stroke="currentColor" strokeWidth="3"/><path d="m21 41-4 17 15-7 15 7-4-17M24 26l5 5 11-11" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div><span className="learn-eyebrow">SEMUA PELAJARAN SELESAI</span><h2>Selamat, {studentName}!</h2><p>Kamu telah menandai seluruh pelajaran selesai. Sertifikat {demo ? "demo" : "penyelesaian mandiri"} siap dibuat sebagai PDF.</p><small>{demo ? "Sertifikat percobaan, bukan sertifikat resmi atau terverifikasi." : "Penyelesaian ditandai mandiri dan belum diverifikasi."}</small></div><button className="learn-button" disabled={generating} onClick={certificate}>{generating ? "Membuat PDF…" : "Unduh sertifikat PDF ↓"}</button></section>}
         <div className="learn-pagination"><button className="learn-button-secondary" disabled={selected === 0} onClick={() => choose(selected - 1)}>← Sebelumnya</button><span>{selected + 1} / {allClassroomLessons.length}</span><button className="learn-button" disabled={selected === allClassroomLessons.length - 1} onClick={() => choose(selected + 1)}>Pelajaran berikutnya →</button></div>
       </div></div>
   </main>;
